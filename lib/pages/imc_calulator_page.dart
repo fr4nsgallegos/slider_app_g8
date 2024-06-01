@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slider_example_g8/models/imc_model.dart';
 
 class ImcCalculatorPage extends StatefulWidget {
   @override
@@ -7,11 +8,31 @@ class ImcCalculatorPage extends StatefulWidget {
 
 class _ImcCalculatorPageState extends State<ImcCalculatorPage> {
   double peso = 2;
-  double altura = 50;
+  double altura = 0.5;
+  double imcResult = 0;
+  ImcModel? selectedImcModel;
 
   double roundedOneDecimal(double number) {
     String stringNumber = number.toStringAsFixed(1);
     return double.parse(stringNumber);
+  }
+
+  void seleccionarImcModel() {
+    if (imcResult > 0 && imcResult < 18.5) {
+      selectedImcModel = indiceList[0];
+    } else if (imcResult >= 18.5 && imcResult <= 24.9) {
+      selectedImcModel = indiceList[1];
+    } else if (imcResult >= 25 && imcResult <= 29.9) {
+      selectedImcModel = indiceList[2];
+    } else {
+      selectedImcModel = indiceList[3];
+    }
+  }
+
+  void calcularIMC() {
+    imcResult = roundedOneDecimal(peso / (altura * altura));
+    seleccionarImcModel();
+    print(imcResult);
   }
 
   @override
@@ -30,7 +51,7 @@ class _ImcCalculatorPageState extends State<ImcCalculatorPage> {
               style: TextStyle(fontSize: 20),
             ),
             Text(
-              "$altura cm",
+              "$altura m",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -38,8 +59,8 @@ class _ImcCalculatorPageState extends State<ImcCalculatorPage> {
             ),
             Slider(
               value: altura,
-              min: 50,
-              max: 220,
+              min: 0.5,
+              max: 2.2,
               onChanged: (value) {
                 altura = roundedOneDecimal(value);
                 setState(() {});
@@ -64,6 +85,40 @@ class _ImcCalculatorPageState extends State<ImcCalculatorPage> {
                 peso = roundedOneDecimal(value);
                 setState(() {});
               },
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  calcularIMC();
+                  setState(() {});
+                },
+                child: Text("Calcular"),
+              ),
+            ),
+            Divider(height: 32, thickness: 2),
+            Text(
+              imcResult == 0 ? "-" : imcResult.toString(),
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              selectedImcModel?.titulo ?? "Sin calcular",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            ),
+            Text(
+              selectedImcModel?.recomendacion ?? "Sin recomendación",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey,
+              ),
+              textAlign: TextAlign.center,
             )
           ],
         ),
