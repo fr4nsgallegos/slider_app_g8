@@ -1,8 +1,35 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  double sliderValue = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Center(
+          child: Column(
+            children: [
+              Slider(
+                value: sliderValue,
+                min: 0,
+                max: 30,
+                onChanged: (mandarina) {
+                  sliderValue = mandarina;
+                  print(mandarina);
+                  setState(() {});
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
