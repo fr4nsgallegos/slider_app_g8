@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:slider_example_g8/models/imc_model.dart';
+import 'package:slider_example_g8/widgets/result_imc_widget.dart';
 
 class ImcCalculatorPage extends StatefulWidget {
   @override
@@ -101,24 +103,12 @@ class _ImcCalculatorPageState extends State<ImcCalculatorPage> {
               ),
             ),
             Divider(height: 32, thickness: 2),
-            Text(
-              imcResult == 0 ? "-" : imcResult.toString(),
-              style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              selectedImcModel?.titulo ?? "Sin calcular",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-            ),
-            Text(
-              selectedImcModel?.recomendacion ?? "Sin recomendación",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey,
-              ),
-              textAlign: TextAlign.center,
+            ResultImcWidget(
+              imcResult: imcResult.toString(),
+              imcModelTitulo: selectedImcModel?.titulo,
+              imcModelRecomendacion: selectedImcModel?.recomendacion,
+              imcModelImagePath: selectedImcModel?.pathImage,
+              color: selectedImcModel?.color,
             )
           ],
         ),
