@@ -17,6 +17,10 @@ class _HomePageState extends State<HomePage> {
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus sit amet libero vel congue. Morbi eget nisi vel sapien commodo ultrices sit amet nec ante. Curabitur ipsum quam, posuere eget consectetur venenatis, laoreet ac libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus sit amet libero vel congue. Morbi eget nisi vel sapien commodo ultrices sit amet nec ante. Curabitur ipsum quam, posuere eget consectetur venenatis, laoreet ac libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas.";
 
   bool isUnderline = false;
+  bool isOverline = false;
+  bool isLineThrough = false;
+  bool isBold = false;
+  List<TextDecoration> decorationTextExample = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,20 +34,30 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   textLorem,
                   style: TextStyle(
-                    fontSize: sizeValue,
-                    color: Color.fromRGBO(
-                      redValue.toInt(),
-                      greenValue.toInt(),
-                      blueValue.toInt(),
-                      opacityValue,
-                    ),
-                    decoration: isUnderline == true
-                        ? TextDecoration.underline
-                        : TextDecoration.none,
-                    //TextDecoration.underline, //raya abajo
-                    //  TextDecoration.overline,//raya arriba
-                    // TextDecoration.lineThrough, //tachado
-                  ),
+                      fontWeight:
+                          isBold == true ? FontWeight.bold : FontWeight.normal,
+                      fontSize: sizeValue,
+                      color: Color.fromRGBO(
+                        redValue.toInt(),
+                        greenValue.toInt(),
+                        blueValue.toInt(),
+                        opacityValue,
+                      ),
+                      decoration: TextDecoration.combine(decorationTextExample
+                          // [
+                          //   TextDecoration.underline, //raya abajo
+                          //   TextDecoration.overline, //raya arriba
+                          //   TextDecoration.lineThrough, //tachado
+                          // ],
+                          )
+
+                      //  isUnderline == true
+                      //     ? TextDecoration.underline
+                      //     : TextDecoration.none,
+                      //TextDecoration.underline, //raya abajo
+                      //  TextDecoration.overline,//raya arriba
+                      // TextDecoration.lineThrough, //tachado
+                      ),
                 ),
                 Slider(
                   value: sizeValue,
@@ -116,12 +130,37 @@ class _HomePageState extends State<HomePage> {
                   child: Text("Shuffle"),
                 ),
                 CheckboxListTile(
-                    title: Text("se tacha?"),
-                    value: isUnderline,
-                    onChanged: (juanito) {
-                      isUnderline = juanito!;
-                      setState(() {});
-                    })
+                  title: Text("Bold?"),
+                  value: isBold,
+                  onChanged: (juanito) {
+                    isBold = juanito!;
+                    setState(() {});
+                  },
+                ),
+                CheckboxListTile(
+                  title: Text("underline?"),
+                  value: isBold,
+                  onChanged: (juanito) {
+                    decorationTextExample.add(TextDecoration.underline);
+                    setState(() {});
+                  },
+                ),
+                CheckboxListTile(
+                  title: Text("Overline?"),
+                  value: isBold,
+                  onChanged: (juanito) {
+                    isOverline = juanito!;
+                    setState(() {});
+                  },
+                ),
+                CheckboxListTile(
+                  title: Text("LineThrough?"),
+                  value: isBold,
+                  onChanged: (juanito) {
+                    isLineThrough = juanito!;
+                    setState(() {});
+                  },
+                ),
               ],
             ),
           ),
