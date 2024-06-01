@@ -8,13 +8,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double sliderValue = 0;
+  double sizeValue = 10;
   double opacityValue = 1;
   double redValue = Random().nextInt(255) + 1;
   double greenValue = Random().nextInt(255) + 1;
   double blueValue = Random().nextInt(255) + 1;
   String textLorem =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus sit amet libero vel congue. Morbi eget nisi vel sapien commodo ultrices sit amet nec ante. Curabitur ipsum quam, posuere eget consectetur venenatis, laoreet ac libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus sit amet libero vel congue. Morbi eget nisi vel sapien commodo ultrices sit amet nec ante. Curabitur ipsum quam, posuere eget consectetur venenatis, laoreet ac libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas.";
+
+  bool isUnderline = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,23 +30,30 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   textLorem,
                   style: TextStyle(
+                    fontSize: sizeValue,
                     color: Color.fromRGBO(
                       redValue.toInt(),
                       greenValue.toInt(),
                       blueValue.toInt(),
                       opacityValue,
                     ),
+                    decoration: isUnderline == true
+                        ? TextDecoration.underline
+                        : TextDecoration.none,
+                    //TextDecoration.underline, //raya abajo
+                    //  TextDecoration.overline,//raya arriba
+                    // TextDecoration.lineThrough, //tachado
                   ),
                 ),
                 Slider(
-                  value: sliderValue,
+                  value: sizeValue,
                   min: 0,
                   max: 30,
                   activeColor: Colors.red,
                   inactiveColor: Colors.green,
                   thumbColor: Colors.yellow,
                   onChanged: (mandarina) {
-                    sliderValue = mandarina;
+                    sizeValue = mandarina;
                     print(mandarina);
                     setState(() {});
                   },
@@ -105,7 +114,14 @@ class _HomePageState extends State<HomePage> {
                     setState(() {});
                   },
                   child: Text("Shuffle"),
-                )
+                ),
+                CheckboxListTile(
+                    title: Text("se tacha?"),
+                    value: isUnderline,
+                    onChanged: (juanito) {
+                      isUnderline = juanito!;
+                      setState(() {});
+                    })
               ],
             ),
           ),
