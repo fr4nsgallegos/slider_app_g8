@@ -25,7 +25,10 @@ class _TextStyleEditorPageState extends State<TextStyleEditorPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("Style Editor"),
+          centerTitle: true,
+        ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
