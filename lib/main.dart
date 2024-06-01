@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slider_example_g8/pages/favorites_deports_page.dart';
 import 'package:slider_example_g8/pages/imc_calulator_page.dart';
 import 'package:slider_example_g8/pages/text_style_editor_page.dart';
 
@@ -6,7 +7,8 @@ void main() {
   runApp(
     MaterialApp(
       // home: TextStyleEditorPage(),
-      home: ImcCalculatorPage(),
+      // home: ImcCalculatorPage(),
+      home: FavoritesDeportsPage(),
       debugShowCheckedModeBanner: false,
     ),
   );
