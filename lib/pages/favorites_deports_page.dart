@@ -14,7 +14,7 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
     {"name": "Natación", "isFavorite": false},
     {"name": "Voley", "isFavorite": false},
   ];
-
+  Colors? _containerColor;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,7 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
               alignment: WrapAlignment.center,
               children: [
                 for (int i = 0; i < deportsList.length; i++)
-                  ItemDeportWidget(deportsList[i]["name"])
+                  ItemDeportWidget(deportsList[i])
               ],
             ),
             Divider(
@@ -68,17 +68,31 @@ class TituloWidget extends StatelessWidget {
   }
 }
 
-class ItemDeportWidget extends StatelessWidget {
-  String tituloDeporte;
-  ItemDeportWidget(this.tituloDeporte);
+class ItemDeportWidget extends StatefulWidget {
+  Map<String, dynamic> deporte;
+
+  ItemDeportWidget(this.deporte);
+
+  @override
+  State<ItemDeportWidget> createState() => _ItemDeportWidgetState();
+}
+
+class _ItemDeportWidgetState extends State<ItemDeportWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        // _containerColor = Colors.orange.shade200;
+        print(widget.deporte["name"]);
+        widget.deporte["isFavorite"] = true;
+        setState(() {});
+      },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          // color: Colors.redAccent,
+          color: widget.deporte["isFavorite"]
+              ? Colors.orange.shade200
+              : Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: Colors.orange,
@@ -86,7 +100,7 @@ class ItemDeportWidget extends StatelessWidget {
           ),
         ),
         child: Text(
-          tituloDeporte,
+          widget.deporte["name"],
           style: TextStyle(fontSize: 18),
         ),
       ),
