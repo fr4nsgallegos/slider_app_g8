@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,9 +10,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double sliderValue = 0;
   double opacityValue = 1;
-  double redValue = 150;
-  double greenValue = 150;
-  double blueValue = 120;
+  double redValue = Random().nextInt(255) + 1;
+  double greenValue = Random().nextInt(255) + 1;
+  double blueValue = Random().nextInt(255) + 1;
   String textLorem =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus sit amet libero vel congue. Morbi eget nisi vel sapien commodo ultrices sit amet nec ante. Curabitur ipsum quam, posuere eget consectetur venenatis, laoreet ac libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus sit amet libero vel congue. Morbi eget nisi vel sapien commodo ultrices sit amet nec ante. Curabitur ipsum quam, posuere eget consectetur venenatis, laoreet ac libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas.";
   @override
@@ -95,6 +97,15 @@ class _HomePageState extends State<HomePage> {
                     setState(() {});
                   },
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    redValue = Random().nextDouble() * 256;
+                    greenValue = Random().nextDouble() * 256;
+                    blueValue = Random().nextDouble() * 256;
+                    setState(() {});
+                  },
+                  child: Text("Shuffle"),
+                )
               ],
             ),
           ),
