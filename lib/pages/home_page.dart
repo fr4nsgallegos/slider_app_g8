@@ -139,25 +139,43 @@ class _HomePageState extends State<HomePage> {
                 ),
                 CheckboxListTile(
                   title: Text("underline?"),
-                  value: isBold,
-                  onChanged: (juanito) {
-                    decorationTextExample.add(TextDecoration.underline);
+                  value: isUnderline,
+                  onChanged: (v) {
+                    isUnderline = v!;
+                    isUnderline
+                        ? decorationTextExample.add(TextDecoration.underline)
+                        : decorationTextExample
+                            .remove(TextDecoration.underline);
+                    // isUnderline = v!;
+                    // if (isUnderline) {
+                    //   decorationTextExample.add(TextDecoration.underline);
+                    // } else {
+                    //   decorationTextExample.remove(TextDecoration.underline);
+                    // }
+
                     setState(() {});
                   },
                 ),
                 CheckboxListTile(
                   title: Text("Overline?"),
-                  value: isBold,
-                  onChanged: (juanito) {
-                    isOverline = juanito!;
+                  value: isOverline,
+                  onChanged: (v) {
+                    isOverline = v!;
+                    isOverline
+                        ? decorationTextExample.add(TextDecoration.overline)
+                        : decorationTextExample.remove(TextDecoration.overline);
                     setState(() {});
                   },
                 ),
                 CheckboxListTile(
                   title: Text("LineThrough?"),
-                  value: isBold,
-                  onChanged: (juanito) {
-                    isLineThrough = juanito!;
+                  value: isLineThrough,
+                  onChanged: (v) {
+                    isLineThrough = v!;
+                    isLineThrough
+                        ? decorationTextExample.add(TextDecoration.lineThrough)
+                        : decorationTextExample
+                            .remove(TextDecoration.lineThrough);
                     setState(() {});
                   },
                 ),
