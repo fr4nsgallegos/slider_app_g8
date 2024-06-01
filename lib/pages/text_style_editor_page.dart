@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class TextStyleEditorPage extends StatefulWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<TextStyleEditorPage> createState() => _TextStyleEditorPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _TextStyleEditorPageState extends State<TextStyleEditorPage> {
   double sizeValue = 10;
   double opacityValue = 1;
   double redValue = Random().nextInt(255) + 1;
