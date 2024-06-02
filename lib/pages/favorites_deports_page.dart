@@ -14,7 +14,9 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
     {"name": "Natación", "isFavorite": false},
     {"name": "Voley", "isFavorite": false},
   ];
-  Colors? _containerColor;
+
+  List<Map<String, dynamic>> favoriteDeportList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,26 +28,44 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TituloWidget("¿Cuáles son tus deportes favoritos?"),
-            SizedBox(
-              height: 24,
-            ),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              alignment: WrapAlignment.center,
-              children: [
-                for (int i = 0; i < deportsList.length; i++)
-                  ItemDeportWidget(deportsList[i])
-              ],
+            Center(
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.center,
+                children: [
+                  for (int i = 0; i < deportsList.length; i++)
+                    ItemDeportWidget(deportsList[i])
+                ],
+              ),
             ),
             Divider(
               thickness: 3,
               color: Colors.black,
               height: 48,
             ),
-            TituloWidget("Mis deportes favoritos son:")
+            TituloWidget("Mis deportes favoritos son:"),
+            Container(
+              height: MediaQuery.of(context).size.height / 3.5,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                // color: Colors.red,
+                borderRadius: BorderRadius.circular(15.0),
+                border: Border.all(width: 3, color: Colors.black),
+              ),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.center,
+                children: [
+                  for (int i = 0; i < favoriteDeportList.length; i++)
+                    ItemDeportWidget(favoriteDeportList[i])
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -58,11 +78,14 @@ class TituloWidget extends StatelessWidget {
   TituloWidget(this.texto);
   @override
   Widget build(BuildContext context) {
-    return Text(
-      texto,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: Text(
+        texto,
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -82,9 +105,11 @@ class _ItemDeportWidgetState extends State<ItemDeportWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // _containerColor = Colors.orange.shade200;
-        print(widget.deporte["name"]);
-        widget.deporte["isFavorite"] = true;
+        if (widget.deporte["isFavorite"] == false) {
+          widget.deporte["isFavorite"] = true;
+        } else {
+          widget.deporte["isFavorite"] = false;
+        }
         setState(() {});
       },
       child: Container(
