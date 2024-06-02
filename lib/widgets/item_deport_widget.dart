@@ -30,7 +30,11 @@ class _ItemDeportWidgetState extends State<ItemDeportWidget> {
                   : Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: Colors.orange,
+            color: widget.isfavoriteListContainer
+                ? Colors.orange
+                : widget.deporte["isFavorite"]
+                    ? Colors.orange.shade200
+                    : Colors.orange,
             width: 2,
           ),
         ),

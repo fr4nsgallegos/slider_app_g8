@@ -69,6 +69,7 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
             ),
             TituloWidget("Mis deportes favoritos son:"),
             Container(
+              padding: EdgeInsets.all(8),
               height: MediaQuery.of(context).size.height / 3.5,
               width: double.infinity,
               decoration: BoxDecoration(
@@ -82,7 +83,17 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
                 alignment: WrapAlignment.center,
                 children: [
                   for (int i = 0; i < favoriteDeportList.length; i++)
-                    ItemDeportWidget(favoriteDeportList[i], () {}, true)
+                    ItemDeportWidget(
+                      favoriteDeportList[i],
+                      () {
+                        print(favoriteDeportList[i]["name"]);
+                        favoriteDeportList[i]["isFavorite"] = false;
+                        favoriteDeportList.remove(favoriteDeportList[i]);
+
+                        setState(() {});
+                      },
+                      true,
+                    )
                 ],
               ),
             ),
