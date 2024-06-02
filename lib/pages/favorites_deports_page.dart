@@ -40,7 +40,23 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
                 alignment: WrapAlignment.center,
                 children: [
                   for (int i = 0; i < deportsList.length; i++)
-                    ItemDeportWidget(deportsList[i])
+                    ItemDeportWidget(
+                      deportsList[i],
+                      () {
+                        //lo VUELVO FAVORITO
+                        if (deportsList[i]["isFavorite"] == false) {
+                          deportsList[i]["isFavorite"] = true;
+                          favoriteDeportList.add(deportsList[i]);
+                          setState(() {});
+                        }
+                        //YA NO ES FAVORITO
+                        else {
+                          deportsList[i]["isFavorite"] = false;
+                        }
+
+                        setState(() {});
+                      },
+                    )
                 ],
               ),
             ),
@@ -64,7 +80,7 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
                 alignment: WrapAlignment.center,
                 children: [
                   for (int i = 0; i < favoriteDeportList.length; i++)
-                    ItemDeportWidget(favoriteDeportList[i])
+                    ItemDeportWidget(favoriteDeportList[i], () {})
                 ],
               ),
             ),

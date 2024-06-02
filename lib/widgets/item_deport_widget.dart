@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class ItemDeportWidget extends StatefulWidget {
   Map<String, dynamic> deporte;
+  VoidCallback onTap;
 
-  ItemDeportWidget(this.deporte);
+  ItemDeportWidget(
+    this.deporte,
+    this.onTap,
+  );
 
   @override
   State<ItemDeportWidget> createState() => _ItemDeportWidgetState();
@@ -13,15 +17,16 @@ class _ItemDeportWidgetState extends State<ItemDeportWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (widget.deporte["isFavorite"] == false) {
-          widget.deporte["isFavorite"] = true;
-        } else {
-          widget.deporte["isFavorite"] = false;
-        }
+      onTap: widget.onTap,
+      // () {
+      //   if (widget.deporte["isFavorite"] == false) {
+      //     widget.deporte["isFavorite"] = true;
+      //   } else {
+      //     widget.deporte["isFavorite"] = false;
+      //   }
 
-        setState(() {});
-      },
+      //   setState(() {});
+      // },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
