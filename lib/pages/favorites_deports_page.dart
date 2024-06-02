@@ -53,8 +53,8 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
                         }
                         //YA NO ES FAVORITO
                         else {
-                          favoriteDeportList[i].isFavorite = false;
-                          favoriteDeportList.remove(favoriteDeportList[i]);
+                          deportModelList[i].isFavorite = false;
+                          favoriteDeportList.remove(deportModelList[i]);
                         }
 
                         setState(() {});
