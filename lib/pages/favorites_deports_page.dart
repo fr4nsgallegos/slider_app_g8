@@ -52,10 +52,12 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
                         //YA NO ES FAVORITO
                         else {
                           deportsList[i]["isFavorite"] = false;
+                          favoriteDeportList.remove(deportsList[i]);
                         }
 
                         setState(() {});
                       },
+                      false,
                     )
                 ],
               ),
@@ -80,7 +82,7 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
                 alignment: WrapAlignment.center,
                 children: [
                   for (int i = 0; i < favoriteDeportList.length; i++)
-                    ItemDeportWidget(favoriteDeportList[i], () {})
+                    ItemDeportWidget(favoriteDeportList[i], () {}, true)
                 ],
               ),
             ),
