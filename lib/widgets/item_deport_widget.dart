@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:slider_example_g8/models/deport_model.dart';
 
 class ItemDeportWidget extends StatefulWidget {
-  Map<String, dynamic> deporte;
+  DeportModel deporte;
   VoidCallback onTap;
   bool isfavoriteListContainer;
 
@@ -25,26 +26,26 @@ class _ItemDeportWidgetState extends State<ItemDeportWidget> {
         decoration: BoxDecoration(
           color: widget.isfavoriteListContainer
               ? Colors.white
-              : widget.deporte["isFavorite"]
+              : widget.deporte.isFavorite
                   ? Colors.orange.shade200
                   : Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: widget.isfavoriteListContainer
                 ? Colors.orange
-                : widget.deporte["isFavorite"]
+                : widget.deporte.isFavorite
                     ? Colors.orange.shade200
                     : Colors.orange,
             width: 2,
           ),
         ),
         child: Text(
-          widget.deporte["name"],
+          widget.deporte.name,
           style: TextStyle(
             fontSize: 18,
             color: widget.isfavoriteListContainer
                 ? Colors.black
-                : widget.deporte["isFavorite"]
+                : widget.deporte.isFavorite
                     ? Colors.white
                     : Colors.black,
           ),

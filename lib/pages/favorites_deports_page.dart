@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slider_example_g8/models/deport_model.dart';
 import 'package:slider_example_g8/widgets/item_deport_widget.dart';
 import 'package:slider_example_g8/widgets/titulo_widget.dart';
 
@@ -8,16 +9,17 @@ class FavoritesDeportsPage extends StatefulWidget {
 }
 
 class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
-  List<Map<String, dynamic>> deportsList = [
-    {"name": "Gimnasio", "isFavorite": false},
-    {"name": "Fútbol", "isFavorite": false},
-    {"name": "Golf", "isFavorite": false},
-    {"name": "Baloncesto", "isFavorite": false},
-    {"name": "Natación", "isFavorite": false},
-    {"name": "Voley", "isFavorite": false},
-  ];
+  // List<Map<String, dynamic>> deportsList = [
+  //   {"name": "Gimnasio", "isFavorite": false},
+  //   {"name": "Fútbol", "isFavorite": false},
+  //   {"name": "Golf", "isFavorite": false},
+  //   {"name": "Baloncesto", "isFavorite": false},
+  //   {"name": "Natación", "isFavorite": false},
+  //   {"name": "Voley", "isFavorite": false},
+  // ];
 
-  List<Map<String, dynamic>> favoriteDeportList = [];
+  // List<Map<String, dynamic>> favoriteDeportList = [];
+  List<DeportModel> favoriteDeportList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +41,20 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
                 runSpacing: 8,
                 alignment: WrapAlignment.center,
                 children: [
-                  for (int i = 0; i < deportsList.length; i++)
+                  for (int i = 0; i < deportModelList.length; i++)
                     ItemDeportWidget(
-                      deportsList[i],
+                      deportModelList[i],
                       () {
                         //lo VUELVO FAVORITO
-                        if (deportsList[i]["isFavorite"] == false) {
-                          deportsList[i]["isFavorite"] = true;
-                          favoriteDeportList.add(deportsList[i]);
+                        if (deportModelList[i].isFavorite == false) {
+                          deportModelList[i].isFavorite = true;
+                          favoriteDeportList.add(deportModelList[i]);
                           setState(() {});
                         }
                         //YA NO ES FAVORITO
                         else {
-                          deportsList[i]["isFavorite"] = false;
-                          favoriteDeportList.remove(deportsList[i]);
+                          favoriteDeportList[i].isFavorite = false;
+                          favoriteDeportList.remove(favoriteDeportList[i]);
                         }
 
                         setState(() {});
@@ -86,8 +88,8 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
                     ItemDeportWidget(
                       favoriteDeportList[i],
                       () {
-                        print(favoriteDeportList[i]["name"]);
-                        favoriteDeportList[i]["isFavorite"] = false;
+                        print(favoriteDeportList[i].name);
+                        favoriteDeportList[i].isFavorite = false;
                         favoriteDeportList.remove(favoriteDeportList[i]);
 
                         setState(() {});
