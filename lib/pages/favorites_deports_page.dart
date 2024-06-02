@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:slider_example_g8/widgets/item_deport_widget.dart';
+import 'package:slider_example_g8/widgets/titulo_widget.dart';
 
 class FavoritesDeportsPage extends StatefulWidget {
   @override
@@ -67,66 +69,6 @@ class _FavoritesDeportsPageState extends State<FavoritesDeportsPage> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class TituloWidget extends StatelessWidget {
-  String texto;
-  TituloWidget(this.texto);
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24),
-      child: Text(
-        texto,
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
-
-class ItemDeportWidget extends StatefulWidget {
-  Map<String, dynamic> deporte;
-
-  ItemDeportWidget(this.deporte);
-
-  @override
-  State<ItemDeportWidget> createState() => _ItemDeportWidgetState();
-}
-
-class _ItemDeportWidgetState extends State<ItemDeportWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (widget.deporte["isFavorite"] == false) {
-          widget.deporte["isFavorite"] = true;
-        } else {
-          widget.deporte["isFavorite"] = false;
-        }
-        setState(() {});
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: widget.deporte["isFavorite"]
-              ? Colors.orange.shade200
-              : Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: Colors.orange,
-            width: 2,
-          ),
-        ),
-        child: Text(
-          widget.deporte["name"],
-          style: TextStyle(fontSize: 18),
         ),
       ),
     );
